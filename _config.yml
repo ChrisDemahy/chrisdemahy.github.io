@@ -13,9 +13,8 @@ url: "http://chrisdemahy.github.io" # the base hostname & protocol for your site
 twitter_username: ChrisDemahy
 github_username: ChrisDemahy
 # collections:
-#     authors:
-#         output: true
-
+#     icons:
+#         output: false
 # defaults:
 #     - scope:
 #           path: ""

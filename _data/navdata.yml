@@ -1,0 +1,12 @@
+- name: Home
+  link: /
+  icon: ./assets/icons/home.svg
+- name: About
+  link: /about.html
+  icon: ./assets/icons/smile.svg
+- name: Projects
+  link: /staff.html
+  icon: ./assets/icons/code.svg
+- name: Blog
+  link: /blog.html
+  icon: ./assets/icons/pencil.svg
