@@ -7,11 +7,8 @@
 
 name: Ruby
 
-on:
-    push:
-        branches: [master]
-    pull_request:
-        branches: [master]
+# Triggers the workflow on push or pull request events
+on: [push, pull_request]
 
 jobs:
     test:
@@ -35,8 +32,18 @@ jobs:
                       ${{ runner.os }}-gems-
             - name: Install dependencies
               run: |
-                  bundle config path vendor/bundle
-                  bundle install --jobs 4 --retry 3
+                  bundle config path vendor/bundle > ./artifacts/bundle_results.log
+                  bundle install --jobs 4 --retry 3 >> ./artifacts/bundle_results.log
+
+            - name: Build Jekyll Site
+              run: |
+                  bundle exec jekyll build --incremental --verbose --profile --trace > ./artifacts/build_results.log
 
             - name: Run tests
-              run: bundle exec rspec
+              run: bundle exec rspec -fd --warning --out ./artifacts/test_results.log
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: artifacts
+                  path: /artifacts # or path/to/artifact
