@@ -32,30 +32,22 @@ jobs:
                       ${{ runner.os }}-gems-
             - name: Install dependencies
               run: |
-                  bundle config path vendor/bundle > bundle_results.log
-                  bundle install --jobs 4 --retry 3 >> bundle_results.log
+                  bundle config path vendor/bundle
+                  bundle install --jobs 4 --retry 3
+
+            - name: Run Jekyll Doctor
+              run: |
+                  bundle exec jekyll doctor -t
 
             - name: Build Jekyll Site
               run: |
                   bundle exec jekyll build --incremental --verbose --profile --trace > build_results.log
 
             - name: Run tests
-              run: bundle exec rspec -fd --warning --out ./artifacts/test_results.log
+              run: bundle exec rspec -fd --warning
 
             - name: Upload artifacts
               uses: actions/upload-artifact@v2
               with:
-                  name: test_results.log
-                  path: test_results.log
-
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v2
-              with:
-                  name: bundle_results.log
-                  path: bundle_results.log
-
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v2
-              with:
-                  name: build_results.log
-                  path: build_results.log
+                  name: _site
+                  path: _site/
