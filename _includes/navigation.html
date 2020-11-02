@@ -2,8 +2,8 @@
     <ul class="navbar-nav">
         {% for item in site.data.navdata %}
         <li class="nav-item">
-            <a class="nav-link" href="{{ item.link }}">
-                <img src="{{item.icon}}" />
+            <a class="nav-link" href="{{ item.link | relative_url }}">
+                <img class="svg-filter" src="{{item.icon}}" />
                 <span class="link-text">{{ item.name }}</span>
             </a>
         </li>

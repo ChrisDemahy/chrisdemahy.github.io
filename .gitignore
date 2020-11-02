@@ -13,3 +13,8 @@ test_results.log
 bundle_results.log
 build_results.log
 # artifacts/
+assets/icons/.DS_Store
+assets/.DS_Store
+.DS_Store
+.DS_Store
+assets/.DS_Store

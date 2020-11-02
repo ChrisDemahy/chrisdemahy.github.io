@@ -1,12 +1,21 @@
 - name: Home
-  link: /
+  link: /#home
   icon: ./assets/icons/home.svg
 - name: About
-  link: /about.html
+  link: /#about
   icon: ./assets/icons/smile.svg
 - name: Projects
-  link: /staff.html
+  link: /#projects
   icon: ./assets/icons/code.svg
 - name: Blog
-  link: /blog.html
+  link: /#blog
   icon: ./assets/icons/pencil.svg
+- name: Contact Me
+  link: /#contact
+  icon: ./assets/icons/envelope.svg
+- name: Resume
+  link: /#resume
+  icon: ./assets/icons/briefcase.svg
+- name: Theme
+  icon: ./assets/icons/moon.svg
+  link: "#"
