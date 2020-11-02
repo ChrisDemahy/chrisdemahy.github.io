@@ -9,7 +9,7 @@ email: demahyc@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
     The personal site of Chris Demahy. Checkout some of my projects.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "chrisdemahy.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://chrisdemahy.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ChrisDemahy
 github_username: ChrisDemahy
 # collections:
