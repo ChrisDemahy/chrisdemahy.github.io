@@ -29,10 +29,10 @@ jobs:
             - name: Setup Cache
               uses: actions/cache@v2
               with:
-              path: vendor/bundle
-              key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-              restore-keys: |
-                  ${{ runner.os }}-gems-
+                  path: vendor/bundle
+                  key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-gems-
             - name: Install dependencies
               run: |
                   bundle config path vendor/bundle
