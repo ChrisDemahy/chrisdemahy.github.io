@@ -45,7 +45,17 @@ jobs:
             - name: Upload artifacts
               uses: actions/upload-artifact@v2
               with:
-                  path: |
-                      test_results.log
-                      bundle_results.log
-                      build_results.log
+                  name: test_results.log
+                  path: test_results.log
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: bundle_results.log
+                  path: bundle_results.log
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: build_results.log
+                  path: build_results.log
