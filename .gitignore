@@ -12,4 +12,4 @@ vendor/
 test_results.log
 bundle_results.log
 build_results.log
-artifacts/
+# artifacts/
