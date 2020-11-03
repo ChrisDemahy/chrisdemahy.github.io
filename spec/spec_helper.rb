@@ -1,56 +1,21 @@
-# This spec needs rubygem-rack, rubygem-capybara and rubygem-rspec installed.
-# Run as `rspec spec/` in the project root directory.
 Bundler.require(:default, :test)
-require 'rack'
-require 'capybara'
+# get necessary gems
+require 'rspec'
+require 'capybara/poltergeist'
 require 'capybara/dsl'
-require 'capybara/session'
-require 'capybara/rspec'
-require 'pry'
-require_relative './shared_contexts.rb'
-
-class JekyllSite
-    attr_reader :root, :server
-
-    def initialize(root)
-        @root = root
-        @server = Rack::File.new(root)
-    end
-
-    def call(env)
-        path = env['PATH_INFO']
-
-        # Use index.html for / paths
-        if path == '/' && exists?('index.html')
-            env['PATH_INFO'] = '/index.html'
-        elsif !exists?(path) && exists?(path + '.html')
-            env['PATH_INFO'] += '.html'
-        end
-
-        server.call(env)
-    end
-
-    def exists?(path)
-        File.exist?(File.join(root, path))
-    end
-end
-
-# Setup for Capybara to test Jekyll static files served by Rack
-Capybara.app =
-    Rack::Builder.new do
-        map '/' do
-            use Rack::Lint
-            run JekyllSite.new(File.join(File.dirname(__FILE__), '..', '_site'))
-        end
-    end.to_app
-
-Capybara.default_selector = :css
-Capybara.default_driver = :rack_test
-Capybara.javascript_driver = :webkit
-
+require 'rack/jekyll'
+require 'rack/test'
+require 'phantomjs/poltergeist'
 RSpec.configure do |config|
     config.include Capybara::DSL
 
-    # Make sure the static files were generated
-    `bundle exec jekyll build --trace` unless File.directory?('_site')
+    # get config info
+    $jekyll_config = YAML.load_file('_config.yml')
+    $baseurl = $jekyll_config['baseurl'].to_s
+    $test_pages = $jekyll_config['test_pages']
+
+    # set up capybara and register the jekyll site via rack
+    Capybara.current_driver = :poltergeist
+    Capybara.javascript_driver = :poltergeist
+    Capybara.app = Rack::Jekyll.new(force_build: false)
 end
