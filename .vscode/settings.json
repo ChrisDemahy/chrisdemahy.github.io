@@ -6,6 +6,7 @@
         // "**/*.map": true
         ".bundle": true,
         ".jekyll-cache": true,
+        ".jekyll-metadata": true,
         "vendor": true
     }
 }
