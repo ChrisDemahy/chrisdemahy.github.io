@@ -61,7 +61,10 @@ jobs:
               run: bundle exec htmlproofer ./_site --only-4xx --check-html --assume-extension --check-opengraph --check-favicon
 
             - name: Run ls
-              run: ls -a
+              run: |
+                  cd _site
+                  ls -a
+                  cd ..
 
             - name: Run Rspec Tests
               run: bundle exec rspec --require spec_helper --color --warning --format documentation
