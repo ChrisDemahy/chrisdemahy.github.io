@@ -18,3 +18,9 @@ test_pages:
 
 kramdown:
     html_to_native: true
+
+defaults:
+    - scope:
+          path: ""
+      values:
+          layout: "default"
