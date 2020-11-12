@@ -38,6 +38,9 @@ jobs:
               run: |
                   ruby -v
 
+            - name: Install Bundle
+              run: gem install bundler
+
             - name: Bundle Version
               run: |
                   bundle -v
